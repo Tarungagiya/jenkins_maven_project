@@ -15,7 +15,7 @@
     </properties>
 
     <dependencies>
-        <!-- JUnit 5 API and engine -->
+        <!-- JUnit 5 dependency -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -26,7 +26,7 @@
 
     <build>
         <plugins>
-            <!-- Plugin to run main method -->
+            <!-- Plugin to run the Java main class -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -36,7 +36,22 @@
                 </configuration>
             </plugin>
 
-            <!-- Plugin to enable JUnit 5 tests -->
+            <!-- Plugin to create executable jar with main class in MANIFEST -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.example.HelloWorld</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin to run tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -44,4 +59,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
